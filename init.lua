@@ -949,10 +949,12 @@ require('lazy').setup({
   {
     'kaicataldo/material.vim',
     init = function()
-      -- Load the colorscheme here.
-      -- Like many other themes, this one has different styles, and you could load
-      -- any other, such as 'tokyonight-storm', 'tokyonight-moon', or 'tokyonight-day'.
       vim.cmd.colorscheme 'material'
+      -- I want just the background color to match my usual
+      vim.cmd [[
+        hi normal guibg=283137
+        hi signcolumn guibg=283137
+      ]]
     end,
   },
   {
