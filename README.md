@@ -18,8 +18,6 @@ External Requirements:
   - If you want to write Typescript, you need `npm`
   - If you want to write Golang, you will need `go`
   - etc.
-- **proper function for markdown files requires the markdownlint-cli package**
-    - ``brew install markdownlint-cli``
 
 ## Usage
 
