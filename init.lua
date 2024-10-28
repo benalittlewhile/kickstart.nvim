@@ -194,6 +194,12 @@ vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper win
 vim.keymap.set('c', '<C-j>', '<C-n>', { desc = 'Select next command line completion' })
 vim.keymap.set('c', '<C-k>', '<C-p>', { desc = 'Select previous command line completion' })
 
+-- make space v t open a new terminal in a vertical split
+vim.keymap.set('n', '<Leader>vt', ':vert<Space>term<cr>', { silent = true })
+
+-- make space v s open a new vertical split
+vim.keymap.set('n', '<Leader>vs', ':vsp<cr>', { silent = true })
+
 -- [[ Basic Autocommands ]]
 --  See `:help lua-guide-autocommands`
 
@@ -975,6 +981,18 @@ require('lazy').setup({
       }
     end,
   },
+  {
+  'rmagatti/auto-session',
+  lazy = false,
+
+  ---enables autocomplete for opts
+  ---@module "auto-session"
+  ---@type AutoSession.Config
+  opts = {
+    suppressed_dirs = { '~/', '~/Projects', '~/Downloads', '/' },
+    -- log_level = 'debug',
+  }
+}
 }, {
   ui = {
     -- If you are using a Nerd Font: set icons to an empty table which will use the
