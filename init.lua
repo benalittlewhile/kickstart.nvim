@@ -190,16 +190,6 @@ vim.keymap.set('n', '<C-l>', '<C-w><C-l>', { desc = 'Move focus to the right win
 vim.keymap.set('n', '<C-j>', '<C-w><C-j>', { desc = 'Move focus to the lower window' })
 vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
 
--- Make ctrl + j/k switch command line suggestions like it does for insert
-vim.keymap.set('c', '<C-j>', '<C-n>', { desc = 'Select next command line completion' })
-vim.keymap.set('c', '<C-k>', '<C-p>', { desc = 'Select previous command line completion' })
-
--- make space v t open a new terminal in a vertical split
-vim.keymap.set('n', '<Leader>vt', ':vert<Space>term<cr>', { silent = true })
-
--- make space v s open a new vertical split
-vim.keymap.set('n', '<Leader>vs', ':vsp<cr>', { silent = true })
-
 -- [[ Basic Autocommands ]]
 --  See `:help lua-guide-autocommands`
 
@@ -948,7 +938,7 @@ require('lazy').setup({
   -- require 'kickstart.plugins.indent_line',
   require 'kickstart.plugins.lint',
   require 'kickstart.plugins.autopairs',
-  -- require 'kickstart.plugins.neo-tree',
+  require 'kickstart.plugins.neo-tree',
   -- require 'kickstart.plugins.gitsigns', -- adds gitsigns recommend keymaps
 
   -- NOTE: The import below can automatically add your own plugins, configuration, etc from `lua/custom/plugins/*.lua`
@@ -956,43 +946,9 @@ require('lazy').setup({
   --
   --  Uncomment the following line and add your plugins to `lua/custom/plugins/*.lua` to get going.
   --    For additional information, see `:help lazy.nvim-lazy.nvim-structuring-your-plugins`
-  -- { import = 'custom.plugins' },
+  { import = 'custom.plugins' },
   --
   --
-  -- NOTE: My (Ben's) plugins/changes below this line (currently in the require('lazy).setup({ block
-  {
-    'kaicataldo/material.vim',
-    init = function()
-      vim.cmd.colorscheme 'material'
-      -- I want just the background color to match my usual
-      vim.cmd [[
-        hi normal guibg=283137
-        hi signcolumn guibg=283137
-      ]]
-    end,
-  },
-  {
-    'kylechui/nvim-surround',
-    version = '*', -- Use for stability; omit to use `main` branch for the latest features
-    event = 'VeryLazy',
-    config = function()
-      require('nvim-surround').setup {
-        -- Configuration here, or leave empty to use defaults
-      }
-    end,
-  },
-  {
-  'rmagatti/auto-session',
-  lazy = false,
-
-  ---enables autocomplete for opts
-  ---@module "auto-session"
-  ---@type AutoSession.Config
-  opts = {
-    suppressed_dirs = { '~/', '~/Projects', '~/Downloads', '/' },
-    -- log_level = 'debug',
-  }
-}
 }, {
   ui = {
     -- If you are using a Nerd Font: set icons to an empty table which will use the
