@@ -10,8 +10,12 @@ vim.keymap.set('n', '<Leader>vt', ':vert<Space>term<cr>', { silent = true })
 -- make space v s open a new vertical split
 vim.keymap.set('n', '<Leader>vs', ':vsp<cr>', { silent = true })
 
--- Plugins
+-- Other vim settings
 
+-- word wrap and such
+vim.o.textwidth = 80
+
+-- Plugins
 return {
   {
     'kaicataldo/material.vim',
