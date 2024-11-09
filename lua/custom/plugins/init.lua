@@ -50,4 +50,8 @@ return {
       -- log_level = 'debug',
     },
   },
+  {
+    -- replaces tpope/vim-sleuth to hopefully work better
+    'NMAC427/guess-indent.nvim',
+  },
 }
