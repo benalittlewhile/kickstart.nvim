@@ -394,6 +394,7 @@ require('lazy').setup({
               ['<C-k>'] = actions.move_selection_previous,
               ['<C-CR>'] = actions.select_default,
               ['<c-d>'] = require('telescope.actions').delete_buffer,
+              ['<c-s>'] = actions.file_vsplit,
             },
           },
         },
