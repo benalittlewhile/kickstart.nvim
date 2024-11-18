@@ -14,6 +14,9 @@ vim.keymap.set('n', '<Leader>vs', ':vsp<cr>', { silent = true })
 
 -- word wrap and such
 vim.o.textwidth = 80
+vim.o.shiftwidth = 4
+vim.o.tabstop = 4
+vim.opt.list = false
 
 -- Plugins
 return {
@@ -53,5 +56,26 @@ return {
   {
     -- replaces tpope/vim-sleuth to hopefully work better
     'NMAC427/guess-indent.nvim',
+  },
+  {
+    'windwp/nvim-ts-autotag',
+    init = function()
+      require('nvim-ts-autotag').setup {
+        opts = {
+          -- Defaults
+          enable_close = true, -- Auto close tags
+          enable_rename = true, -- Auto rename pairs of tags
+          enable_close_on_slash = false, -- Auto close on trailing </
+        },
+        -- Also override individual filetype configs, these take priority.
+        -- Empty by default, useful if one of the "opts" global settings
+        -- doesn't work well in a specific filetype
+        -- per_filetype = {
+        --   ['html'] = {
+        --     enable_close = false,
+        --   },
+        -- },
+      }
+    end,
   },
 }
