@@ -1,4 +1,6 @@
+--
 -- Keybinds
+--
 
 -- Make ctrl + j/k switch command line suggestions like it does for insert
 vim.keymap.set('c', '<C-j>', '<C-n>', { desc = 'Select next command line completion' })
@@ -10,13 +12,28 @@ vim.keymap.set('n', '<Leader>vt', ':vert<Space>term<cr>', { silent = true })
 -- make space v s open a new vertical split
 vim.keymap.set('n', '<Leader>vs', ':vsp<cr>', { silent = true })
 
+--
 -- Other vim settings
+--
 
 -- word wrap and such
 vim.o.textwidth = 80
 -- vim.o.shiftwidth = 4
 -- vim.o.tabstop = 4
 vim.opt.list = false
+
+-- don't fold by default (gross)
+vim.o.foldlevel = 99
+
+-- set fold method (should change once 0.11 is out)
+vim.o.foldmethod = 'indent'
+-- try built in lsp folding (THIS WILL BECOME ACTIVE WITH NVIM 0.11 RELEASE IN
+-- MARCH 2025)
+-- vim.o.foldmethod = 'expr'
+-- vim.o.foldexpr = 'v:lua.vim.lsp.foldexpr()'
+
+-- disable diagnostics inline (instead use 'gh' to trigger hover.nvim)
+vim.diagnostic.config { virtual_text = false }
 
 -- Plugins
 return {
@@ -27,6 +44,7 @@ return {
       -- I want just the background color to match my usual
       vim.cmd [[
         hi normal guibg=283137
+        hi normalfloat guibg=283137
         hi signcolumn guibg=283137
       ]]
     end,
@@ -143,6 +161,61 @@ return {
           'yaml',
         },
       }
+    end,
+  },
+  {
+    'lewis6991/hover.nvim',
+    init = function()
+      require('hover').setup {
+        init = function()
+          -- Require providers
+          require 'hover.providers.lsp'
+          -- require('hover.providers.gh')
+          -- require('hover.providers.gh_user')
+          -- require('hover.providers.jira')
+          -- require('hover.providers.dap')
+          -- require('hover.providers.fold_preview')
+          require 'hover.providers.diagnostic'
+          -- require('hover.providers.man')
+          -- require('hover.providers.dictionary')
+        end,
+        preview_opts = {
+          border = 'single',
+        },
+        -- Whether the contents of a currently open hover window should be moved
+        -- to a :h preview-window when pressing the hover keymap.
+        preview_window = false,
+        title = true,
+        mouse_providers = {
+          'LSP',
+        },
+        mouse_delay = 1000,
+      }
+
+      -- Setup keymaps
+      -- gh hovers like vs code
+      vim.keymap.set('n', 'gh', require('hover').hover, { desc = 'hover.nvim' })
+      vim.keymap.set('n', 'gH', require('hover').hover_select, { desc = 'hover.nvim (select)' })
+      vim.keymap.set('n', '<C-p>', function()
+        require('hover').hover_switch 'previous'
+      end, { desc = 'hover.nvim (previous source)' })
+      vim.keymap.set('n', '<C-n>', function()
+        require('hover').hover_switch 'next'
+      end, { desc = 'hover.nvim (next source)' })
+      -- same as above but for c-j and c-k so my fingers don't die
+      vim.keymap.set('n', '<C-k>', function()
+        require('hover').hover_switch 'previous'
+      end, { desc = 'hover.nvim (previous source)' })
+      vim.keymap.set('n', '<C-j>', function()
+        require('hover').hover_switch 'next'
+      end, { desc = 'hover.nvim (next source)' })
+      vim.keymap.set('n', '<esc>', function()
+        require('hover').close(0)
+      end)
+
+      -- Mouse support
+      vim.keymap.set('n', '<MouseMove>', require('hover').hover_mouse, { desc = 'hover.nvim (mouse)' })
+      vim.o.mousemoveevent = true
     end,
   },
 }
