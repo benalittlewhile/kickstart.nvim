@@ -202,13 +202,9 @@ return {
       vim.keymap.set('n', '<C-n>', function()
         require('hover').hover_switch 'next'
       end, { desc = 'hover.nvim (next source)' })
-      -- same as above but for c-j and c-k so my fingers don't die
-      vim.keymap.set('n', '<C-k>', function()
-        require('hover').hover_switch 'previous'
-      end, { desc = 'hover.nvim (previous source)' })
-      vim.keymap.set('n', '<C-j>', function()
-        require('hover').hover_switch 'next'
-      end, { desc = 'hover.nvim (next source)' })
+      -- I had previously copied the above functions to map c-j and c-k to the
+      -- same thing, but that apparently conflicts with normal mode movements,
+      -- so that's out lol
       vim.keymap.set('n', '<esc>', function()
         require('hover').close(0)
       end)
