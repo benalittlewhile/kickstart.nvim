@@ -1,5 +1,9 @@
 # Forked from [kickstart.nvim](https://github.com/nvim-lua/kickstart.nvim)
 
+
+> [!TIP] 
+> Installation script for a new system: `git clone git@github.com:benalittlewhile/kickstart.nvim.git ~/.config/nvim`
+
 ## Installation
 
 ### Install Neovim
