@@ -639,6 +639,7 @@ require('lazy').setup({
         marksman = {},
         prettierd = {},
         eslint = {},
+        black = {},
         --
 
         lua_ls = {
