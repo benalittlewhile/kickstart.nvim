@@ -12,6 +12,10 @@ vim.keymap.set('n', '<Leader>vt', ':vert<Space>term<cr>', { silent = true })
 -- make space v s open a new vertical split
 vim.keymap.set('n', '<Leader>vs', ':vsp<cr>', { silent = true })
 
+-- trying to make normal mode esc clear search results (this is technically in
+-- the kickstart template already, idk why it needs to be defined here)
+vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
+
 --
 -- Other vim settings
 --
