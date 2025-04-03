@@ -14,7 +14,7 @@ vim.keymap.set('n', '<Leader>vs', ':vsp<cr>', { silent = true })
 
 -- trying to make normal mode esc clear search results (this is technically in
 -- the kickstart template already, idk why it needs to be defined here)
-vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
+-- vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 
 --
 -- Other vim settings
@@ -214,6 +214,9 @@ return {
       -- so that's out lol
       vim.keymap.set('n', '<esc>', function()
         require('hover').close(0)
+        -- APPARENTLY THIS HAS TO BE SET HERE BECAUSE KEYMAP.SET IS EXCLUSIVE
+        -- ISN'T THAT AWESOME I LOVE THAT SO MUCH
+        vim.cmd.nohlsearch() -- clear hl search on escape
       end)
 
       -- Mouse support
