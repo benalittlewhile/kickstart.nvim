@@ -39,6 +39,10 @@ vim.o.foldmethod = 'indent'
 -- disable diagnostics inline (instead use 'gh' to trigger hover.nvim)
 vim.diagnostic.config { virtual_text = false }
 
+-- set zsh as shell (hopefully so !<command> inherits the same settings)
+vim.o.shell = '/bin/zsh'
+vim.o.shellcmdflag = '-ic'
+
 -- Plugins
 return {
   {
