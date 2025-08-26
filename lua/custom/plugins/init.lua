@@ -23,7 +23,7 @@ vim.keymap.set('n', '<Leader>vs', ':vsp<cr>', { silent = true })
 -- word wrap and such
 vim.o.textwidth = 80
 -- vim.o.shiftwidth = 4
--- vim.o.tabstop = 4
+vim.o.tabstop = 4
 vim.opt.list = false
 
 -- don't fold by default (gross)
