@@ -43,6 +43,15 @@ vim.diagnostic.config { virtual_text = false }
 vim.o.shell = '/bin/zsh'
 vim.o.shellcmdflag = '-ic'
 
+-- Enable autoread and set up checking triggers
+-- intended behavior: when entering/focusing a buffer, check if the file changed
+-- on disk, and if so load it
+vim.o.autoread = true
+vim.api.nvim_create_autocmd({ 'FocusGained', 'BufEnter' }, {
+  command = "if mode() != 'c' | checktime | endif",
+  pattern = '*',
+})
+
 -- Plugins
 return {
   {
